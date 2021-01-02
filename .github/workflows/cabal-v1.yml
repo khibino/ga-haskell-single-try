@@ -41,17 +41,17 @@ jobs:
 
     - name: Install dependencies
       run: |
-        set -x
+        set -ex
         cabal update
         cabal install --enable-tests --only-dependencies
     - name: Build
       run: |
-        set -x
+        set -ex
         cabal configure --enable-tests
         cabal build
     - name: Run tests
       run: |
-        set -x
+        set -ex
         cabal test
 
 ### Local Variables: ***
