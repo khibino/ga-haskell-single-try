@@ -43,15 +43,15 @@ jobs:
       run: |
         set -x
         cabal update
-        cabal install --only-dependencies all
+        cabal install --only-dependencies
     - name: Build
       run: |
         set -x
-        cabal build all
+        cabal build
     - name: Run tests
       run: |
         set -x
-        cabal test all
+        cabal test
 
 ### Local Variables: ***
 ### mode:yaml ***
