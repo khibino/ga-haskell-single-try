@@ -1,0 +1,59 @@
+name: Haskell with cabal no v2-
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - ghc: '8.2.2'
+            cabal-install: '2.0.0.1'
+          - ghc: '8.0.2'
+            cabal-install: '1.24.0.2'
+
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal-install }}
+
+    - name: Cache
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-cabal
+      with:
+        path: ~/.cabal
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/*.cabal') }}-${{ hashFiles('**/cabal.project') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Install dependencies
+      run: |
+        set -x
+        cabal update
+        cabal build --only-dependencies --enable-tests --enable-benchmarks all
+    - name: Build
+      run: |
+        set -x
+        cabal build --enable-tests --enable-benchmarks all
+    - name: Run tests
+      run: |
+        set -x
+        cabal test all
+
+### Local Variables: ***
+### mode:yaml ***
+### indent-tabs-mode: nil ***
+### End: ***
