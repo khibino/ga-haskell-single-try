@@ -44,12 +44,12 @@ jobs:
       run: |
         set -ex
         cabal update
-        cabal install --enable-tests --only-dependencies
+        cabal install --jobs=2 --enable-tests --only-dependencies
     - name: Build
       run: |
         set -ex
         cabal configure --enable-tests
-        cabal build
+        cabal build --jobs=2
     - name: Run tests
       run: |
         set -ex
