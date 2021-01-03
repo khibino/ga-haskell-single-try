@@ -67,8 +67,8 @@ jobs:
           target=all
         else
           target=
-          if grep '^test-suite' *.cabal > /dev/null;
-          then
+          if grep '^test-suite' *.cabal > /dev/null; then
+            :
           else
             run_test=no
           fi
