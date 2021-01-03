@@ -16,6 +16,12 @@ jobs:
         include:
           - ghc: '8.8.4'
             cabal-install: '3.0.0.0'
+          - ghc: '8.8.3'
+            cabal-install: '3.0.0.0'
+          - ghc: '8.8.2'
+            cabal-install: '3.0.0.0'
+          - ghc: '8.8.1'
+            cabal-install: '3.0.0.0'
           - ghc: '8.6.5'
             cabal-install: '2.4.0.0'
           - ghc: '8.4.4'
