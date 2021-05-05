@@ -43,18 +43,18 @@ jobs:
     - name: Install dependencies
       run: |
         set -ex
-        cabal update
-        cabal configure
-        cabal install --jobs=2 --only-dependencies
+        cabal v1-update
+        cabal v1-configure
+        cabal v1-install --jobs=2 --only-dependencies
     - name: Build
       run: |
         set -ex
-        cabal configure --enable-tests
-        cabal build --jobs=2
+        cabal v1-configure --enable-tests
+        cabal v1-build --jobs=2
     - name: Run tests
       run: |
         set -ex
-        cabal test
+        cabal v1-test
 
 ### Local Variables: ***
 ### mode:yaml ***
