@@ -44,6 +44,7 @@ jobs:
       run: |
         set -ex
         cabal update
+        cabal configure
         cabal install --jobs=2 --only-dependencies
     - name: Build
       run: |
