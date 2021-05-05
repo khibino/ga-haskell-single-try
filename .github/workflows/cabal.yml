@@ -14,6 +14,8 @@ jobs:
     strategy:
       matrix:
         include:
+          - ghc: '8.10.4'
+            cabal-install: '3.2.0.0'
           - ghc: '8.8.4'
             cabal-install: '3.0.0.0'
           - ghc: '8.8.3'
