@@ -16,14 +16,11 @@ jobs:
       matrix:
         include:
           - ghc: '8.2.2'
-            cabal-install: '2.0'
-          #  hvr binary '2.0.0.1'
+            cabal-install: '2.0'           # hvr binary '2.0.0.1'
           - ghc: '8.0.2'
-            cabal-install: '1.24'
-          #  hvr binary '1.24.0.2'
+            cabal-install: '1.24'          # hvr binary '1.24.0.2'
           - ghc: '7.10.3'
-            cabal-install: '1.22'
-          #  hvr binary '1.22.9.0'
+            cabal-install: '1.22'          # hvr binary '1.22.9.0'
 
     steps:
     - uses: actions/checkout@v2
