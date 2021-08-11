@@ -53,13 +53,13 @@ jobs:
       run: |
         set -ex
         cabal update
-        cabal install --ghc-options=-optl-no-pie --jobs=2 --only-dependencies
+        cabal install --ghc-option=-optl-no-pie --jobs=2 --only-dependencies
         # pass no-pie for ghc-7.10
     - name: Build
       run: |
         set -ex
         cabal configure --enable-tests
-        cabal build --ghc-options=-optl-no-pie --jobs=2
+        cabal build --ghc-option=-optl-no-pie --jobs=2
         # pass no-pie for ghc-7.10
     - name: Run tests
       run: |
