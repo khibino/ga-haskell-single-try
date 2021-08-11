@@ -26,11 +26,9 @@ jobs:
           - ghc: '8.8.3'
             cabal-install: '3.0.0.0'
           - ghc: '8.6.5'
-            cabal-install: '2.4.1.0'
-          #  cabal-install: '2.4.0.0'
+            cabal-install: '2.4'     # hvr binary '2.4'
           - ghc: '8.4.4'
-            cabal-install: '2.4.1.0'
-          #  cabal-install: '2.2.0.0'
+            cabal-install: '2.2'     # hvr binary '2.2'
 
     steps:
     - uses: actions/checkout@v2
@@ -51,6 +49,10 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
+    - name: Clear cabal configuration
+      run: |
+        rm ~/.cabal/config
+        # remove cabal configuration in cache
     - name: Install dependencies
       run: |
         set -ex
