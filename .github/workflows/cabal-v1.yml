@@ -20,6 +20,7 @@ jobs:
           - ghc: '8.0.2'
             cabal-install: '1.24'          # hvr binary '1.24.0.2'
           - ghc: '7.10.3'
+            ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.22'          # hvr binary '1.22.9.0'
 
     steps:
@@ -50,6 +51,7 @@ jobs:
       run: |
         set -ex
         cabal update
+        echo ${{ matrix.ghc-option }}
         cabal install --ghc-option=-optl-no-pie --jobs=2 --only-dependencies
         # pass no-pie for ghc-7.10
     - name: Build
