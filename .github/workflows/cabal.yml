@@ -34,7 +34,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: haskell/actions/setup@v1
+    - uses: khibino/haskell-actions/setup@v1-g7
       with:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal-install }}
