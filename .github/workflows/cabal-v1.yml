@@ -22,6 +22,12 @@ jobs:
           - ghc: '7.10.3'
             ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.22'          # hvr binary '1.22.9.0'
+          - ghc: '7.8.4'
+            cabal-install: '1.18'          # hvr binary '1.18.0.4'
+          - ghc: '7.6.3'
+            cabal-install: '1.16'          # hvr binary '1.16.0.2'
+          - ghc: '7.4.2'
+            cabal-install: '1.16'          # '1.14' not found
 
     steps:
     - uses: actions/checkout@v2
