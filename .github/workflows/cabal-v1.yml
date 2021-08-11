@@ -17,11 +17,14 @@ jobs:
         include:
           - ghc: '8.2.2'
             cabal-install: '2.0'           # hvr binary '2.0.0.1'
+            cabal-option: --jobs=2
           - ghc: '8.0.2'
             cabal-install: '1.24'          # hvr binary '1.24.0.2'
+            cabal-option: --jobs=2
           - ghc: '7.10.3'
             ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.22'          # hvr binary '1.22.9.0'
+            cabal-option: --jobs=2
           - ghc: '7.8.4'
             ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.18'          # hvr binary '1.18.0.4'
@@ -61,14 +64,12 @@ jobs:
       run: |
         set -ex
         cabal update
-        cabal install ${{ matrix.ghc-option }} --jobs=2 --only-dependencies
-        # pass no-pie for ghc-7.10
+        cabal install ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --only-dependencies
     - name: Build
       run: |
         set -ex
         cabal configure --enable-tests
-        cabal build ${{ matrix.ghc-option }} --jobs=2
-        # pass no-pie for ghc-7.10
+        cabal build ${{ matrix.ghc-option }} ${{ matrix.cabal-option }}
     - name: Run tests
       run: |
         set -ex
