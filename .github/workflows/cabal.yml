@@ -52,6 +52,7 @@ jobs:
     - name: Clear cabal configuration
       run: |
         rm ~/.cabal/config
+        cabal --version
         # remove cabal configuration in cache
     - name: Install dependencies
       run: |
