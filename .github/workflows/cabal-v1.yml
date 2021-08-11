@@ -16,13 +16,13 @@ jobs:
         include:
           - ghc: '8.2.2'
             cabal-install: '2.0'
-          #  cabal-install: '2.4.1.0'
+          #  hvr binary '2.0.0.1'
           - ghc: '8.0.2'
-            cabal-install: '2.4.1.0'
-          #  cabal-install: '1.24.0.2'
+            cabal-install: '1.24'
+          #  hvr binary '1.24.0.2'
           - ghc: '7.10.3'
-            cabal-install: '2.4.1.0'
-          #  cabal-install: '1.22.x.0'
+            cabal-install: '1.22'
+          #  hvr binary '1.22.9.0'
 
     steps:
     - uses: actions/checkout@v2
@@ -47,13 +47,13 @@ jobs:
     - name: Install dependencies
       run: |
         set -ex
-        cabal v1-update
-        cabal v1-install --jobs=2 --only-dependencies
+        cabal update
+        cabal install --jobs=2 --only-dependencies
     - name: Build
       run: |
         set -ex
-        cabal v1-configure --enable-tests
-        cabal v1-build --jobs=2
+        cabal configure --enable-tests
+        cabal build --jobs=2
     - name: Run tests
       run: |
         set -ex
