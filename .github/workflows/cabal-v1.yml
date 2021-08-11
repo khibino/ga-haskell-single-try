@@ -15,8 +15,8 @@ jobs:
       matrix:
         include:
           - ghc: '8.2.2'
+            cabal-install: '2.0'
           #  cabal-install: '2.4.1.0'
-           cabal-install: '2.0'
           - ghc: '8.0.2'
             cabal-install: '2.4.1.0'
           #  cabal-install: '1.24.0.2'
