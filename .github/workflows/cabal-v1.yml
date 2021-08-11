@@ -57,7 +57,7 @@ jobs:
     - name: Run tests
       run: |
         set -ex
-        cabal v1-test
+        cabal test
 
 ### Local Variables: ***
 ### mode:yaml ***
