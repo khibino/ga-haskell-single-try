@@ -16,11 +16,13 @@ jobs:
         include:
           - ghc: '8.2.2'
             cabal-install: '2.4.1.0'
+          #  cabal-install: '2.0.0.1'
           - ghc: '8.0.2'
             cabal-install: '2.4.1.0'
           #  cabal-install: '1.24.0.2'
           - ghc: '7.10.3'
             cabal-install: '2.4.1.0'
+          #  cabal-install: '1.22.x.0'
 
     steps:
     - uses: actions/checkout@v2
