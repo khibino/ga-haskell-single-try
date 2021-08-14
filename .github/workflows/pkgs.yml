@@ -1,0 +1,67 @@
+name: build text
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ghc: '7.6.3'
+            ghc-option: --ghc-option=-optl-no-pie
+            cabal-install: '1.20'
+          - ghc: '7.4.2'
+            ghc-option: --ghc-option=-optl-no-pie
+            cabal-install: '1.20'
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: khibino/haskell-actions/setup@v1-g7
+    # - uses: haskell/actions/setup@v1
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal-install }}
+
+    - name: Cache
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-cabal
+      with:
+        path: ~/.cabal
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/*.cabal') }}-${{ hashFiles('**/cabal.project') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Clear cabal configuration
+      run: |
+        # remove cabal configuration in cache
+        rm ~/.cabal/config
+        cabal --version
+    - name: Install dependencies
+      run: |
+        set -ex
+        cabal update
+        cabal unpack text-0.11.3.1
+        ( cd text-0.11.3.1 ; cabal install --only-dependencies )
+        cabal unpack QuickCheck-2.14.2
+        ( cd QuickCheck-2.14.2 ; cabal install --only-dependencies )
+    - name: Build
+      run: |
+        set -ex
+        ( cd text-0.11.3.1 ; cabal build || true )
+        ( cd QuickCheck-2.14.2 ; cabal build || true )
+
+### Local Variables: ***
+### mode:yaml ***
+### indent-tabs-mode: nil ***
+### End: ***
