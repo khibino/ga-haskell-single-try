@@ -59,6 +59,7 @@ jobs:
         else
           target=
         fi
+        # apply new-* commands for no v2-* like caba-install 2.2
         cabal new-build --jobs=2 --only-dependencies --enable-tests --enable-benchmarks $target
     - name: Build
       run: |
