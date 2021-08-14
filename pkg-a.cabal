@@ -35,18 +35,21 @@ library
   build-depends:       base <5
                      , time
                      , time-locale-compat
+                     , attoparsec
+                     , dlist
+                     , memory
                      -- , relational-query-HDBC
   hs-source-dirs:    src
   default-language:  Haskell2010
 
 
--- test-suite use-quickcheck-simple
---   type:             exitcode-stdio-1.0
---   main-is:          useQuickCheckSimple.hs
---   hs-source-dirs:   tests
---   build-depends:    base <5, pkg-a,
---                     quickcheck-simple
---   default-language: Haskell2010
+test-suite use-quickcheck-simple
+  type:             exitcode-stdio-1.0
+  main-is:          useQuickCheckSimple.hs
+  hs-source-dirs:   tests
+  build-depends:    base <5, pkg-a,
+                    quickcheck-simple
+  default-language: Haskell2010
 
 source-repository head
   type:       git
