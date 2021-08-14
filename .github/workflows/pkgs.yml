@@ -1,4 +1,4 @@
-name: build text
+name: build each packages
 
 on:
   push:
@@ -52,14 +52,14 @@ jobs:
         set -ex
         cabal update
         cabal unpack text-0.11.3.1
-        ( cd text-0.11.3.1 ; cabal install ${{ matrix.cabal-option }} --only-dependencies )
+        ( cd text-0.11.3.1 ; cabal install ${{ matrix.ghc-option }} --only-dependencies )
         cabal unpack QuickCheck-2.14.2
-        ( cd QuickCheck-2.14.2 ; cabal install ${{ matrix.cabal-option }} --only-dependencies )
+        ( cd QuickCheck-2.14.2 ; cabal install ${{ matrix.ghc-option }} --only-dependencies )
     - name: Build
       run: |
         set -ex
-        ( cd text-0.11.3.1 ; cabal build ${{ matrix.cabal-option }} || true )
-        ( cd QuickCheck-2.14.2 ; cabal build ${{ matrix.cabal-option }} || true )
+        ( cd text-0.11.3.1 ; cabal build ${{ matrix.ghc-option }} || true )
+        ( cd QuickCheck-2.14.2 ; cabal build ${{ matrix.ghc-option }} || true )
 
 ### Local Variables: ***
 ### mode:yaml ***
