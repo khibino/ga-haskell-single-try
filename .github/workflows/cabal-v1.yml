@@ -66,12 +66,13 @@ jobs:
         sf=CI/cabal-opts-${{ matrix.ghc }}
         csw="`[ ! -r $sf ] || cat $sf`"
         cabal update
-        cabal install $csw -v ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests
+        cabal install $csw ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests 2> dep.errors || rc=$?
+        if [ x"$rc" != x0 ]; then pkg=`egrep 'failed during the building' dep.errors | awk '{ print $1 }'`; cat /home/runner/.cabal/logs/${pkg}.log; exit 1; fi
     - name: Build
       run: |
         set -ex
         cabal configure --enable-tests
-        cabal build -v ${{ matrix.ghc-option }} ${{ matrix.cabal-option }}
+        cabal build ${{ matrix.ghc-option }} ${{ matrix.cabal-option }}
     - name: Run tests
       run: |
         set -ex
