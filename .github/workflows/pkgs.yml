@@ -58,8 +58,8 @@ jobs:
     - name: Build
       run: |
         set -ex
-        ( cd text-0.11.3.1 ; cabal build ${{ matrix.ghc-option }} --ghc-option=-v || true )
-        ( cd QuickCheck-2.14.2 ; cabal build ${{ matrix.ghc-option }} --ghc-option=-v || true )
+        ( cd text-0.11.3.1 ; cabal build ${{ matrix.ghc-option }} --ghc-option=-v2 || true )
+        ( cd QuickCheck-2.14.2 ; cabal build ${{ matrix.ghc-option }} --ghc-option=-v2 || true )
 
 ### Local Variables: ***
 ### mode:yaml ***
