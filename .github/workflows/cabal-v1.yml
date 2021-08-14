@@ -73,7 +73,8 @@ jobs:
     - name: Run tests
       run: |
         set -ex
-        cabal test
+        # pass linker option for re-linking case
+        cabal test ${{ matrix.ghc-option }}
 
 ### Local Variables: ***
 ### mode:yaml ***
