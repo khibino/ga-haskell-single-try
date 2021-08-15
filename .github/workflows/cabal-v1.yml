@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    # dirty hack applying ubuntu-18.04 (bionic) to execute xenial binaries
     runs-on: ubuntu-18.04
 
     strategy:
