@@ -65,7 +65,7 @@ jobs:
       run: |
         set -ex
         for p in ${{ env.PKGS }}; do \
-          ( cd $p && cabal build ${{ matrix.ghc-option }} ); \
+          ( cd $p && cabal configure && cabal build ${{ matrix.ghc-option }} ); \
         done
 
 ### Local Variables: ***
