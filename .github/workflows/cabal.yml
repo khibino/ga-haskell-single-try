@@ -23,7 +23,7 @@ jobs:
             cabal-install: '3.0'
           - ghc: '8.6.5'
             cabal-install: '2.4'     # hvr binary '2.4'
-          - ghc: '8.4.4'
+          - ghc: '8.4'
             cabal-install: '2.2'     # hvr binary '2.2'
 
     steps:
