@@ -13,8 +13,8 @@ jobs:
 
     env:
       PKGS: |
-        text-0.11.3.1
-        QuickCheck-2.7.6
+        text-0.11.3.1 \
+        QuickCheck-2.7.6 \
 
     strategy:
       fail-fast: false
