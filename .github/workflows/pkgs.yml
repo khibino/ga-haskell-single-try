@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       env:
-        PKGS:
+        PKGS: |
           text-0.11.3.1
           QuickCheck-2.7.6
       matrix:
