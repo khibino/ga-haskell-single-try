@@ -63,10 +63,10 @@ jobs:
     - name: Install dependencies
       run: |
         set -ex
-        sf=CI/cabal-opts-${{ matrix.ghc }}
-        csw="`[ ! -r $sf ] || cat $sf`"
+        opfile=CI/cabal-opts-${{ matrix.ghc }}
+        opts="`[ ! -r $opfile ] || cat $opfile`"
         cabal update
-        cabal install $csw ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests
+        cabal install $opts ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests
     - name: Build
       run: |
         set -ex
