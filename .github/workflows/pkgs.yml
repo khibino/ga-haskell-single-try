@@ -23,7 +23,7 @@ jobs:
           - ghc: '7.6.3'
             ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.20'
-          - ghc: '7.4'                     # 7.4.2 - newest is default
+          - ghc: '7.4.2'
             ghc-option: --ghc-option=-optl-no-pie
             cabal-install: '1.20'
 
