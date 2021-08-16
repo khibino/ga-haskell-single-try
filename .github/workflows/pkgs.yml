@@ -63,7 +63,7 @@ jobs:
         cabal update
         for p in ${{ env.PKGS }}; do \
           cabal unpack $p; \
-          ( cd $p && cabal install $ops ${{ matrix.ghc-option }} --only-dependencies ); \
+          ( cd $p && cabal install $opts ${{ matrix.ghc-option }} --only-dependencies ); \
         done
     - name: Build
       run: |
