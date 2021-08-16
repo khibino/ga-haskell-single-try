@@ -58,10 +58,12 @@ jobs:
     - name: Install dependencies
       run: |
         set -ex
+        opfile=CI/cabal-opts-${{ matrix.ghc }}
+        opts="`[ ! -r $opfile ] || cat $opfile`"
         cabal update
         for p in ${{ env.PKGS }}; do \
           cabal unpack $p; \
-          ( cd $p && cabal install ${{ matrix.ghc-option }} --only-dependencies ); \
+          ( cd $p && cabal install $ops ${{ matrix.ghc-option }} --only-dependencies ); \
         done
     - name: Build
       run: |
