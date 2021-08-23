@@ -63,10 +63,13 @@ jobs:
     - name: Install dependencies
       run: |
         set -ex
-        opfile=CI/cabal-opts-${{ matrix.ghc }}
-        opts="`[ ! -r $opfile ] || cat $opfile`"
         cabal update
-        cabal install $opts ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests
+        # clear positional params
+        set --
+        envfile=CI/env-ghc-${{ matrix.ghc }}
+        # set constraint set to positional params
+        [ ! -r $envfile ] || . $envfile
+        cabal install "$@" ${{ matrix.ghc-option }} ${{ matrix.cabal-option }} --avoid-reinstalls --only-dependencies --enable-tests
     - name: Build
       run: |
         set -ex
